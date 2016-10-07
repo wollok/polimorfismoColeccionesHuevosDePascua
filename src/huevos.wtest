@@ -1,0 +1,122 @@
+import huevos.*
+
+
+
+/* 					     	TESTS HUEVOS									 */
+
+
+test "huevoRepostero tiene 750 calorias" {
+	assert.equals(750,huevoRepostero.calorias())
+}
+test "huevoRepostero tiene chocolate Blanco." {
+	assert.that(huevoRepostero.tieneChocolateBlanco())
+}
+
+
+test "conejoChocolate De 100 gramos tiene 1000 calorias"{
+	conejoChocolate.peso(100)
+	assert.equals(1000,conejoChocolate.calorias())
+}
+
+test "huevoMixto Tiene 900 calorías " {
+	assert.equals(900,huevoMixto.calorias())
+} 
+
+test "huevoBlister de 6 huevos tiene 750 calorias." {
+	huevoBlister.huevos(6)
+	assert.equals(750,huevoBlister.calorias())
+}
+
+test "huevoBlister de 6 huevos tiene chocolate blanco" {
+	huevoBlister.huevos(6)
+	assert.that(huevoBlister.tieneChocolateBlanco())
+}
+
+test "huevoBlister de 3 huevos no tiene chocolate blanco" {
+	huevoBlister.huevos(3)
+	assert.notThat(huevoBlister.tieneChocolateBlanco())
+}
+
+test "matrioshka con decoracion flor 5 petalos y huevoBlister con 6 huevitos tiene 4250 calorias "{
+	huevoBlister.huevos(6)
+	matrioshka.decoracion(flor)
+	matrioshka.huevoInterior(huevoBlister)
+	assert.equals(4250,matrioshka.calorias())
+ }
+ 
+ test "matrioshka decoracion Arbol y huevoRepostero,tiene 3900 calorias "{
+  	matrioshka.decoracion(arbol)
+  	matrioshka.huevoInterior(huevoRepostero)
+  	assert.equals(3900,matrioshka.calorias())
+}
+
+
+
+/*									 TESTS PERSONAJES				 */
+
+
+test "Ana no le gusta la matrioshka rellena de huevoRepostero."{
+	 	matrioshka.decoracion(arbol)
+	  	matrioshka.huevoInterior(huevoRepostero)
+	  	assert.notThat(ana.leGusta(matrioshka))
+}
+	  	
+test "A José no le gusta el huevoMixto. "{
+	assert.notThat(jose.leGusta(huevoMixto))
+}	 	 
+
+test "A tito le gusta huevo Mixto"{
+	assert.that(tito.leGusta(huevoMixto))
+}
+
+/*							TEST JUEGO 					 */
+
+test "Al inicio del juego, faltan encontrar todos los huevos"{
+	juego.agregarHuevos([huevoMixto,huevoRepostero,conejoChocolate])
+	assert.equals(3,juego.cuantosFaltan())
+}
+
+test "En un juego con 3 huevos, cuando se encuentra el primero de los huevos, faltan encontrar 2"{
+	conejoChocolate.peso(80)
+	juego.agregarHuevos([huevoMixto,huevoRepostero,conejoChocolate])
+	juego.encontrarPrimerHuevo(ana)
+	assert.equals(2,juego.cuantosFaltan())
+}
+
+test "Cuando se encuentran todos los huevos restantes, ya no falta encontrar ninguno"{
+	conejoChocolate.peso(80)
+	juego.agregarHuevos([huevoMixto,huevoRepostero,conejoChocolate])
+	juego.encontrarHuevosRestantes(ana)
+	assert.equals(0,juego.cuantosFaltan())
+}
+
+
+test "Ana enferma al comer conejo de chocolate "{
+	conejoChocolate.peso(550)
+	ana.comer(conejoChocolate)
+	assert.that(ana.enfermo())
+}
+
+test "Ana enferma si comio algo con chocolate Blanco"{
+	conejoChocolate.peso(80)
+	juego.agregarHuevos([huevoMixto,huevoRepostero,conejoChocolate])
+	juego.encontrarHuevosRestantes(ana)
+	assert.that(ana.enfermo())	
+}
+
+
+test "Jose se enferma si el ultimo que comio fue de chocolate Amargo"{
+	jose.comer(conejoChocolate)
+	jose.comer(huevoMixto)
+	jose.comer(matrioshka)
+	assert.that(jose.enfermo())
+}
+
+test "Tito come cualquier huevo y no se enferma"{
+	tito.comer(conejoChocolate)
+	tito.comer(huevoMixto)
+	tito.comer(matrioshka)
+	assert.notThat(tito.enfermo())
+
+}
+
