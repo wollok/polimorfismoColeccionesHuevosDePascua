@@ -202,18 +202,17 @@ object juego{
 		return huevosBuscados.size()
 	}
 	
-	method encontrarUnHuevo(chico,huevo){
+	method huevoEsEncontrado(chico,huevo){
 		chico.comer(huevo) 
 		huevosBuscados.remove(huevo)
 	}
 	
 	method encontrarPrimerHuevo(chico){
-		self.encontrarUnHuevo(chico, huevosBuscados.first())
+		self.huevoEsEncontrado(chico, huevosBuscados.first())
 	}
 	
 	method encontrarHuevosRestantes(chico){
-		huevosBuscados.forEach({huevo => chico.comer(huevo)})
-		huevosBuscados.clear()
+		huevosBuscados.forEach({huevo => self.huevoEsEncontrado(chico,huevo)})
 	}
 }
 
