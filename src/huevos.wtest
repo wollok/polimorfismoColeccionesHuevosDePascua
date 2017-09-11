@@ -4,6 +4,10 @@ import huevos.*
 
 describe "Tests de Huevos de Pascua" {
 	
+	fixture {
+		juego.agregarHuevos([ huevoMixto, huevoRepostero, conejoChocolate ])
+	}
+	
 	test "huevoRepostero tiene 750 calorias" {
 		assert.equals(750, huevoRepostero.calorias())
 	}
@@ -25,13 +29,13 @@ describe "Tests de Huevos de Pascua" {
 		assert.equals(750, huevoBlister.calorias())
 	}
 
-	test "huevoBlister de 6 huevos tiene chocolate blanco" {
-		huevoBlister.huevos(6)
+	test "huevoBlister de 5 huevos tiene chocolate blanco" {
+		huevoBlister.huevos(5)
 		assert.that(huevoBlister.tieneChocolateBlanco())
 	}
 
-	test "huevoBlister de 3 huevos no tiene chocolate blanco" {
-		huevoBlister.huevos(3)
+	test "huevoBlister de 4 huevos no tiene chocolate blanco" {
+		huevoBlister.huevos(4)
 		assert.notThat(huevoBlister.tieneChocolateBlanco())
 	}
 
@@ -39,6 +43,7 @@ describe "Tests de Huevos de Pascua" {
 	"matrioshka con decoracion flor 5 petalos y huevoBlister con 6 huevitos tiene 4250 calorias "
 	{
 		huevoBlister.huevos(6)
+		flor.petalos(5)
 		matrioshka.decoracion(flor)
 		matrioshka.huevoInterior(huevoBlister)
 		assert.equals(4250, matrioshka.calorias())
@@ -68,8 +73,7 @@ describe "Tests de Huevos de Pascua" {
 
 	/*							TEST JUEGO 					 */
 
-	test "Al inicio del juego, faltan encontrar todos los huevos" {
-		juego.agregarHuevos([ huevoMixto, huevoRepostero, conejoChocolate ])
+	test "Al inicio del juego, faltan encontrar todos los huevos" {		
 		assert.equals(3, juego.cuantosFaltan())
 	}
 
@@ -77,7 +81,6 @@ describe "Tests de Huevos de Pascua" {
 	"En un juego con 3 huevos, cuando se encuentra el primero de los huevos, faltan encontrar 2"
 	{
 		conejoChocolate.peso(80)
-		juego.agregarHuevos([ huevoMixto, huevoRepostero, conejoChocolate ])
 		juego.encontrarPrimerHuevo(ana)
 		assert.equals(2, juego.cuantosFaltan())
 	}
@@ -86,7 +89,6 @@ describe "Tests de Huevos de Pascua" {
 	"Cuando se encuentran todos los huevos restantes, ya no falta encontrar ninguno"
 	{
 		conejoChocolate.peso(80)
-		juego.agregarHuevos([ huevoMixto, huevoRepostero, conejoChocolate ])
 		juego.encontrarHuevosRestantes(ana)
 		assert.equals(0, juego.cuantosFaltan())
 	}
@@ -99,7 +101,6 @@ describe "Tests de Huevos de Pascua" {
 
 	test "Ana enferma si comio algo con chocolate Blanco" {
 		conejoChocolate.peso(80)
-		juego.agregarHuevos([ huevoMixto, huevoRepostero, conejoChocolate ])
 		juego.encontrarHuevosRestantes(ana)
 		assert.that(ana.enfermo())
 	}

@@ -17,7 +17,7 @@ object huevoRepostero {
 
 }
 
-/*huevoMixto: Tiene 400 calorías de chocolate con leche y 500 calorías de chocolate blanco. */
+/*huevoMixto: Tiene 400 caslorías de chocolate con leche y 500 calorías de chocolate blanco. */
 
 object huevoMixto {
 	const caloriasChocolateBlanco = 500
@@ -78,7 +78,7 @@ object huevoBlister {
 	}
 	
 	method tieneChocolateBlanco(){
-		return huevos > 5
+		return huevos >= 5 
 	}
 	
 	method tieneChocolateAmargo(){
@@ -123,6 +123,9 @@ object flor {
 			
 	method calorias(){
 		return petalos * 100
+	}
+	method petalos(_petalos) {
+		petalos = _petalos
 	}	 
 }
 
@@ -136,6 +139,7 @@ object arbol {
 	
 object ana{
 	var huevos = []
+	var caloriasConsumidas = 0
 	
 	method leGusta(huevo){
 		return not huevo.tieneChocolateAmargo() 
@@ -143,14 +147,11 @@ object ana{
 	
 	method comer(huevo){
 		huevos.add(huevo)
+		caloriasConsumidas += huevo.calorias()
 	}
 	
 	method enfermo(){
-		return self.totalCalorias() > 5000 or self.comioChocolateBlanco() 
-	}
-	
-	method totalCalorias(){
-		return huevos.sum({h=>h.calorias()}) 
+		return caloriasConsumidas > 5000 or self.comioChocolateBlanco() 
 	}
 
 	method comioChocolateBlanco() {
