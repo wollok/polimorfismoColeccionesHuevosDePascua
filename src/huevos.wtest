@@ -20,7 +20,7 @@ describe "Tests de Huevos de Pascua" {
 		assert.equals(1000, conejoChocolate.calorias())
 	}
 
-	test "huevoMixto Tiene 900 calorías " {
+	test "huevoMixto Tiene 900 calorias " {
 		assert.equals(900, huevoMixto.calorias())
 	}
 
@@ -63,7 +63,7 @@ describe "Tests de Huevos de Pascua" {
 		assert.notThat(ana.leGusta(matrioshka))
 	}
 
-	test "A José no le gusta el huevoMixto. " {
+	test "A Jose no le gusta el huevoMixto. " {
 		assert.notThat(jose.leGusta(huevoMixto))
 	}
 
