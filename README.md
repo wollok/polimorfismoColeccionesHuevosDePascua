@@ -1,6 +1,6 @@
 # Polimorfismo-Colecciones-Huevos-de-Pascua
  
-[![Build Status](https://travis-ci.org/wollok/polimorfismoColeccionesHuevosDePascua.svg?branch=master)](https://travis-ci.org/wollok/polimorfismoColeccionesHuevosDePascua)
+[![Build Status](https://github.com/wollok/polimorfismoColeccionesHuevosDePascua/actions/workflows/ci.yml/badge.svg)](https://github.com/wollok/polimorfismoColeccionesHuevosDePascua/actions/workflows/ci.yml)
 
 Ejercicio incremental, primera parte con polimorfismo, segunda parte colecciones
 
